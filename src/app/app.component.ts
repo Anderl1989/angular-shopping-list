@@ -14,7 +14,15 @@ export class AppComponent {
     'Butter',
     'Zucker',
   ];
+  selected: number[] = JSON.parse(localStorage.getItem('selected') || '[]');
   onSelectionChange(event: MatSelectionListChange): void {
-    console.log(event.source.selectedOptions.selected.map((option: MatListOption) => option.value));
+    this.selected = event.source.selectedOptions.selected.map((option: MatListOption) => option.value);
+    localStorage.setItem('selected', JSON.stringify(this.selected));
+  }
+
+  onProductClick(event: string) {
+    this.selected = [];
+    localStorage.setItem('selected', JSON.stringify(this.selected));
+    console.log(event);
   }
 }

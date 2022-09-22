@@ -1,9 +1,18 @@
 <mat-selection-list #productsList (selectionChange)="onSelectionChange($event)">
-  <mat-list-option *ngFor="let product of products; index as i" [value]="i">
+  <mat-list-option
+    *ngFor="let product of products; index as i"
+    [value]="i"
+    [selected]="selected.includes(i)"
+  >
     {{ product }}
   </mat-list-option>
 </mat-selection-list>
 
 <p>
-  Options selected: {{ productsList.selectedOptions.selected }}
+  Options selected: {{ selected }}
 </p>
+
+<app-products
+  [selectedProducts]="selected"
+  (notify)="onProductClick($event)"
+></app-products>
