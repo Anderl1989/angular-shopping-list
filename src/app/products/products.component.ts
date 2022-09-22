@@ -6,10 +6,5 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent {
-  @Input() selectedProducts: number[] = [];
-  @Output() notify = new EventEmitter<string>();
 
-  onClick() {
-    this.notify.emit("Hallo Welt");
-  }
 }

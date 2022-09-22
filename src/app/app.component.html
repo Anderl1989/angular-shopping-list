@@ -1,18 +1,13 @@
-<mat-selection-list #productsList (selectionChange)="onSelectionChange($event)">
-  <mat-list-option
-    *ngFor="let product of products; index as i"
-    [value]="i"
-    [selected]="selected.includes(i)"
+<mat-toolbar color="primary">
+  <button
+    routerLink="/"
+    mat-icon-button
   >
-    {{ product }}
-  </mat-list-option>
-</mat-selection-list>
-
-<p>
-  Options selected: {{ selected }}
-</p>
-
-<app-products
-  [selectedProducts]="selected"
-  (notify)="onProductClick($event)"
-></app-products>
+    <mat-icon>home</mat-icon>
+  </button>
+  <button
+    routerLink="/products"
+    mat-button
+  >Products</button>
+</mat-toolbar>
+<router-outlet></router-outlet>
