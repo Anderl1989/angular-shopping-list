@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatListOption, MatSelectionListChange } from '@angular/material/list';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-shopping-list';
+  products: string[] = [
+    'Milch',
+    'Eier',
+    'Mehl',
+    'Butter',
+    'Zucker',
+  ];
+  onSelectionChange(event: MatSelectionListChange): void {
+    console.log(event.source.selectedOptions.selected.map((option: MatListOption) => option.value));
+  }
 }
