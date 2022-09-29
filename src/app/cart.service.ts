@@ -43,6 +43,11 @@ export class CartService {
     }
   }
 
+  removeSelected() {
+    this.products = this.products.filter(p => !p.checked);
+    this.saveChanges();
+  }
+
   getProducts() {
     return this.products;
   }

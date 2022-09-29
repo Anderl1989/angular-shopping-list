@@ -8,11 +8,21 @@ import { CartService } from '../cart.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent {
+  addItem = '';
 
   constructor(private cartService: CartService) { }
 
   getProducts() {
     return this.cartService.getProducts();
+  }
+
+  addToCart() {
+    this.cartService.addToCart(this.addItem);
+    this.addItem = '';
+  }
+
+  removeSelected() {
+    this.cartService.removeSelected();
   }
 
   onSelectionChange(event: MatSelectionListChange): void {
