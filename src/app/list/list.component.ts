@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatListOption, MatSelectionListChange } from '@angular/material/list';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-list',
@@ -7,22 +8,16 @@ import { MatListOption, MatSelectionListChange } from '@angular/material/list';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent {
-  products: string[] = [
-    'Milch',
-    'Eier',
-    'Mehl',
-    'Butter',
-    'Zucker',
-  ];
-  selected: number[] = JSON.parse(localStorage.getItem('selected') || '[]');
-  onSelectionChange(event: MatSelectionListChange): void {
-    this.selected = event.source.selectedOptions.selected.map((option: MatListOption) => option.value);
-    localStorage.setItem('selected', JSON.stringify(this.selected));
+
+  constructor(private cartService: CartService) { }
+
+  getProducts() {
+    return this.cartService.getProducts();
   }
 
-  onProductClick(event: string) {
-    this.selected = [];
-    localStorage.setItem('selected', JSON.stringify(this.selected));
-    console.log(event);
+  onSelectionChange(event: MatSelectionListChange): void {
+    this.cartService.toggleChecked(event.options[0].value);
   }
+
+
 }
