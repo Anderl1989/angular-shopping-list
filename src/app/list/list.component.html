@@ -1,6 +1,11 @@
 <mat-form-field appearance="fill">
   <mat-label>Add product</mat-label>
-  <input matInput type="text" [(ngModel)]="addItem">
+  <input type="text" matInput [formControl]="addControl" [matAutocomplete]="auto" [(ngModel)]="addItem">
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let option of filteredAddOptions | async" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
   <button *ngIf="addItem" matSuffix mat-icon-button label="Clear" (click)="addItem=''">
     <mat-icon>close</mat-icon>
   </button>

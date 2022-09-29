@@ -1,1 +1,18 @@
-<p>Hallo Produkte</p>
+<mat-form-field appearance="fill">
+  <mat-label>Add product</mat-label>
+  <input matInput type="text" [(ngModel)]="addItem">
+  <button *ngIf="addItem" matSuffix mat-icon-button label="Clear" (click)="addItem=''">
+    <mat-icon>close</mat-icon>
+  </button>
+  <button *ngIf="addItem" matSuffix mat-icon-button label="Add" (click)="addToCart()">
+    <mat-icon>done</mat-icon>
+  </button>
+</mat-form-field>
+
+<mat-selection-list #productsList (selectionChange)="onSelectionChange($event)">
+  <mat-list-option *ngFor="let product of getProducts()" [value]="product.id" [selected]="product.checked">
+    {{ product.name }}
+  </mat-list-option>
+</mat-selection-list>
+
+<button mat-raised-button color="warn" (click)="removeSelected()">Remove seleted</button>
